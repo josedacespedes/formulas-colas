@@ -6,13 +6,12 @@
     "node": "14.17.0"
   },
   "scripts": {
-
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild":"ng build --prod"
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
