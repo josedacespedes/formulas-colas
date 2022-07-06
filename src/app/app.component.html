@@ -1,55 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <!-- JavaScript Bundle with Popper -->
 </head>
+
 <body>
 
-<div class="container mt-5">
-  <h3>MM1</h3>
-  <form class='form' [formGroup]="mm1Form" (ngSubmit)="calcularMM1()">
-    <div class="row mb-2">
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="llegadasPromedio">Llegadas promedio (λ)</label>
-          <input type="number" formControlName="llegadasPromedio" class="form-control" id="llegadasPromedio" required>
+  <div class="container mt-2">
+    <h3>MM1</h3>
+    <form class='form' [formGroup]="mm1Form" (ngSubmit)="calcularMM1()">
+      <div class="row mb-2">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="llegadasPromedio">Llegadas promedio (λ)</label>
+            <input type="number" formControlName="llegadasPromedio" class="form-control" id="llegadasPromedio" required>
+          </div>
+          <div class="form-group">
+            <label for="atendidoPorPeriodo">Cosas que se atienden por periodo (μ)</label>
+            <input type="number" formControlName="atendidoPorPeriodo" class="form-control" id="atendidoPorPeriodo"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="valorEvaluado">Quemado-Valor evaluado (k)</label>
+            <input type="number" formControlName="valorEvaluado" class="form-control" id="valorEvaluado" required>
+          </div>
+          <div class="form-group">
+            <label for="horasLaborales">Horas laborales</label>
+            <input type="number" formControlName="horasLaborales" class="form-control" id="horasLaborales" required>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="atendidoPorPeriodo">Cosas que se atienden por periodo (μ)</label>
-          <input type="number" formControlName="atendidoPorPeriodo" class="form-control" id="atendidoPorPeriodo" required>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="numeroCanales">Numero canales (m)</label>
+            <input type="number" formControlName="numeroCanales" class="form-control" id="numeroCanales" required>
+          </div>
+          <div class="form-group">
+            <label for="costoServicio">Costo servicio (Cs)</label>
+            <input type="number" formControlName="costoServicio" class="form-control" id="costoServicio" required>
+          </div>
+          <div class="form-group">
+            <label for="costoInsatisfaccion">Costo insatisfaccion (Cw)</label>
+            <input type="number" formControlName="costoInsatisfaccion" class="form-control" id="costoInsatisfaccion"
+              required>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="valorEvaluado">Quemado-Valor evaluado (k)</label>
-          <input type="number" formControlName="valorEvaluado" class="form-control" id="valorEvaluado" required>
+        <div class="col-md-6" *ngIf="lmm1!=-1">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-toggle="tooltip" data-placement="top" title="Unidades en el sistema" scope="col">L</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Tiempo en el sistema" scope="col">W (H)</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Numero de clientes" scope="col">Lq</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Tiempo de espera en cola" scope="col">Wq (H)</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Probabilidad de uso" scope="col">Ro</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Probabilidad de no uso" scope="col">P0</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Probabilidad clientes mayor a K" scope="col">Pn>K</th>
+                  <th scope="col">C.T servicio (*HL)</th>
+                  <th scope="col">C.T espera S (*HL)</th>
+                  <th scope="col">C.T espera C (*HL)</th>
+                  <th scope="col">Costo final S</th>
+                  <th scope="col">Costo final C</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{lmm1}}</td>
+                  <td>{{wmm1}}</td>
+                  <td>{{lqmm1}}</td>
+                  <td>{{wqmm1}}</td>
+                  <td>{{romm1}}</td>
+                  <td>{{p0mm1}}</td>
+                  <td>{{pnmm1}}</td>
+                  <td>{{totalServiciomm1}}</td>
+                  <td>{{totalEsperasSistemamm1}}</td>
+                  <td>{{totalEsperaColamm1}}</td>
+                  <td>{{costoFinalSistemamm1}}</td>
+                  <td>{{costoFinalColamm1}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="numeroCanales">Numero canales (m)</label>
-          <input type="number" formControlName="numeroCanales" class="form-control" id="numeroCanales">
+      <button type="submit" class="btn btn-info">Calcular MM1</button>
+    </form>
+    <h3>MMm</h3>
+    <form class='form' [formGroup]="mmmForm" (ngSubmit)="calcularMMm()">
+      <div class="row mb-2">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="llegadasPromedio2">Llegadas promedio (λ)</label>
+            <input type="number" formControlName="llegadasPromedio2" class="form-control" id="llegadasPromedio2"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="atendidoPorPeriodo2">Cosas que se atienden por periodo (μ)</label>
+            <input type="number" formControlName="atendidoPorPeriodo2" class="form-control" id="atendidoPorPeriodo2"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="horasLaborales2">Horas laborales</label>
+            <input type="number" formControlName="horasLaborales2" class="form-control" id="horasLaborales2" required>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="costoServicio">Costo servicio (Cs)</label>
-          <input type="number" formControlName="costoServicio" class="form-control" id="costoServicio">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="numeroCanales2">Numero canales (m)</label>
+            <input type="number" formControlName="numeroCanales2" class="form-control" id="numeroCanales2" required>
+          </div>
+          <div class="form-group">
+            <label for="costoServicio2">Costo servicio (Cs)</label>
+            <input type="number" formControlName="costoServicio2" class="form-control" id="costoServicio2" required>
+          </div>
+          <div class="form-group">
+            <label for="costoInsatisfaccion2">Costo insatisfaccion (Cw)</label>
+            <input type="number" formControlName="costoInsatisfaccion2" class="form-control"
+              id="costoInsatisfaccion2 required">
+          </div>
         </div>
-        <div class="form-group">
-          <label for="costoInsatisfaccion">Costo insatisfaccion (Cw)</label>
-          <input type="number" formControlName="costoInsatisfaccion" class="form-control" id="costoInsatisfaccion">
+        <div class="col-md-6" *ngIf="lmmm!=-1">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-toggle="tooltip" data-placement="top" title="Unidades en el sistema" scope="col">L</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Tiempo en el sistema" scope="col">W (H)</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Numero de clientes" scope="col">Lq</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Tiempo de espera en cola" scope="col">Wq (H)</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Probabilidad de uso" scope="col">Ro</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Probabilidad de no uso" scope="col">P0</th>
+                  <th scope="col">C.T servicio (*HL)</th>
+                  <th scope="col">C.T espera S (*HL)</th>
+                  <th scope="col">C.T espera C (*HL)</th>
+                  <th scope="col">Costo final S</th>
+                  <th scope="col">Costo final C</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{lmmm}}</td>
+                  <td>{{wmmm}}</td>
+                  <td>{{lqmmm}}</td>
+                  <td>{{wqmmm}}</td>
+                  <td>{{rommm}}</td>
+                  <td>{{p0mmm}}</td>
+                  <td>{{totalServiciommm}}</td>
+                  <td>{{totalEsperasSistemammm}}</td>
+                  <td>{{totalEsperaColammm}}</td>
+                  <td>{{costoFinalSistemammm}}</td>
+                  <td>{{costoFinalColammm}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
-    <button type="submit" class="btn btn-info">Calcular</button>
-  </form>
-  <h3>MMm</h3>
-
-  <h3>MD1</h3>
-</div>
-
-
-
+      <button type="submit" class="btn btn-info">Calcular MMm</button>
+    </form>
+    <h3>MD1</h3>
+    <form class='form' [formGroup]="md1Form" (ngSubmit)="calcularMD1()">
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="llegadasPromedio3">Llegadas promedio (λ)</label>
+            <input type="number" formControlName="llegadasPromedio3" class="form-control" id="llegadasPromedio3"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="atendidoPorPeriodo3">Cosas que se atienden por periodo (μ)</label>
+            <input type="number" formControlName="atendidoPorPeriodo3" class="form-control" id="atendidoPorPeriodo3"
+              required>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="lmd1!=-1">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-toggle="tooltip" data-placement="top" title="Unidades en el sistema" scope="col">L</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Tiempo en el sistema" scope="col">W (H)</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Numero de clientes" scope="col">Lq</th>
+                  <th data-toggle="tooltip" data-placement="top" title="Tiempo de espera en cola" scope="col">Wq (H)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{lmd1}}</td>
+                  <td>{{wmmd1}}</td>
+                  <td>{{lqmd1}}</td>
+                  <td>{{wqmd1}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-info">Calcular MD1</button>
+    </form>
+  </div>
 </body>
+
 </html>
