@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-<<<<<<< HEAD
 export class AppComponent implements OnInit {
   mm1Form!: FormGroup;
   mmmForm!: FormGroup;
@@ -157,8 +158,4 @@ export class AppComponent implements OnInit {
   get llegadasPromedio3() { return this.md1Form.get('llegadasPromedio3')?.value }
   get atendidoPorPeriodo3() { return this.md1Form.get('atendidoPorPeriodo3')?.value }
 
-=======
-export class AppComponent {
-  title = 'formulas-colas';
->>>>>>> parent of 80ea8d3 (Co-authored-by: Gabriela Zúñiga <GabrielaZH@users.noreply.github.com>)
 }

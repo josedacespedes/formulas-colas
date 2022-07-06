@@ -13,10 +13,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "heroku-postbuild":"ng build --prod"
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 80ea8d3 (Co-authored-by: Gabriela Zúñiga <GabrielaZH@users.noreply.github.com>)
   },
   "private": true,
   "dependencies": {
