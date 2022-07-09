@@ -40,12 +40,11 @@
           </div>
           <div class="form-group">
             <label for="costoServicio">Costo servicio (Cs)</label>
-            <input type="number" formControlName="costoServicio" class="form-control" id="costoServicio" required>
+            <input type="number" formControlName="costoServicio" class="form-control" id="costoServicio">
           </div>
           <div class="form-group">
             <label for="costoInsatisfaccion">Costo insatisfaccion (Cw)</label>
-            <input type="number" formControlName="costoInsatisfaccion" class="form-control" id="costoInsatisfaccion"
-              required>
+            <input type="number" formControlName="costoInsatisfaccion" class="form-control" id="costoInsatisfaccion">
           </div>
         </div>
         <div class="col-md-6" *ngIf="lmm1!=-1">
@@ -61,10 +60,10 @@
                   <th data-toggle="tooltip" data-placement="top" title="Probabilidad de no uso" scope="col">P0</th>
                   <th data-toggle="tooltip" data-placement="top" title="Probabilidad clientes mayor a K" scope="col">Pn>K</th>
                   <th scope="col">C.T servicio (*HL)</th>
-                  <th scope="col">C.T espera S (*HL)</th>
-                  <th scope="col">C.T espera C (*HL)</th>
-                  <th scope="col">Costo final S</th>
-                  <th scope="col">Costo final C</th>
+                  <th class="bg bg-info" scope="col">C.T espera S (*HL)</th>
+                  <th class="bg bg-success" scope="col">C.T espera C (*HL)</th>
+                  <th class="bg bg-info" scope="col">Costo final S</th>
+                  <th class="bg bg-success" scope="col">Costo final C</th>
                 </tr>
               </thead>
               <tbody>
@@ -87,7 +86,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-info">Calcular MM1</button>
+      <button type="submit" class="btn btn-primary">Calcular MM1</button>
     </form>
     <h3>MMm</h3>
     <form class='form' [formGroup]="mmmForm" (ngSubmit)="calcularMMm()">
@@ -115,12 +114,12 @@
           </div>
           <div class="form-group">
             <label for="costoServicio2">Costo servicio (Cs)</label>
-            <input type="number" formControlName="costoServicio2" class="form-control" id="costoServicio2" required>
+            <input type="number" formControlName="costoServicio2" class="form-control" id="costoServicio2">
           </div>
           <div class="form-group">
             <label for="costoInsatisfaccion2">Costo insatisfaccion (Cw)</label>
             <input type="number" formControlName="costoInsatisfaccion2" class="form-control"
-              id="costoInsatisfaccion2 required">
+              id="costoInsatisfaccion2">
           </div>
         </div>
         <div class="col-md-6" *ngIf="lmmm!=-1">
@@ -135,10 +134,10 @@
                   <th data-toggle="tooltip" data-placement="top" title="Probabilidad de uso" scope="col">Ro</th>
                   <th data-toggle="tooltip" data-placement="top" title="Probabilidad de no uso" scope="col">P0</th>
                   <th scope="col">C.T servicio (*HL)</th>
-                  <th scope="col">C.T espera S (*HL)</th>
-                  <th scope="col">C.T espera C (*HL)</th>
-                  <th scope="col">Costo final S</th>
-                  <th scope="col">Costo final C</th>
+                  <th class="bg bg-info" scope="col">C.T espera S (*HL)</th>
+                  <th class="bg bg-success" scope="col">C.T espera C (*HL)</th>
+                  <th class="bg bg-info" scope="col">Costo final S</th>
+                  <th class="bg bg-success" scope="col">Costo final C</th>
                 </tr>
               </thead>
               <tbody>
@@ -160,7 +159,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-info">Calcular MMm</button>
+      <button type="submit" class="btn btn-primary">Calcular MMm</button>
     </form>
     <h3>MD1</h3>
     <form class='form' [formGroup]="md1Form" (ngSubmit)="calcularMD1()">
@@ -200,7 +199,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-info">Calcular MD1</button>
+      <button type="submit" class="btn btn-primary">Calcular MD1</button>
     </form>
   </div>
 </body>

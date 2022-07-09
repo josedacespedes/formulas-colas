@@ -79,55 +79,60 @@ export class AppComponent implements OnInit {
     var wmm1Temporal;
     var wqmm1Temporal;
     if (this.mm1Form.invalid) return;
-    this.lmm1 = parseFloat((this.llegadasPromedio/(this.atendidoPorPeriodo-this.llegadasPromedio)).toFixed(2));
+    this.lmm1 = parseFloat((this.llegadasPromedio/(this.atendidoPorPeriodo-this.llegadasPromedio)).toFixed(4));
     this.wmm1 = 1/(this.atendidoPorPeriodo-this.llegadasPromedio);
     wmm1Temporal=this.wmm1;
     this.wmm1 = this.wmm1*60;
-    this.lqmm1 = parseFloat((Math.pow(this.llegadasPromedio,2)/(this.atendidoPorPeriodo*(this.atendidoPorPeriodo-this.llegadasPromedio))).toFixed(2));
+    this.lqmm1 = parseFloat((Math.pow(this.llegadasPromedio,2)/(this.atendidoPorPeriodo*(this.atendidoPorPeriodo-this.llegadasPromedio))).toFixed(4));
     this.wqmm1 = this.llegadasPromedio/(this.atendidoPorPeriodo)*(this.atendidoPorPeriodo-this.llegadasPromedio);
     wqmm1Temporal=this.wqmm1;
     this.wqmm1 = this.wqmm1*60;
-    this.romm1 = parseFloat((this.llegadasPromedio/this.atendidoPorPeriodo).toFixed(2));
-    this.p0mm1 = parseFloat((1-(this.llegadasPromedio/this.atendidoPorPeriodo)).toFixed(2));
-    this.pnmm1 = parseFloat((Math.pow((this.llegadasPromedio/this.atendidoPorPeriodo),(this.valorEvaluado+1))).toFixed(2));
+    this.romm1 = parseFloat((this.llegadasPromedio/this.atendidoPorPeriodo).toFixed(4));
+    this.p0mm1 = parseFloat((1-(this.llegadasPromedio/this.atendidoPorPeriodo)).toFixed(4));
+    this.pnmm1 = parseFloat((Math.pow((this.llegadasPromedio/this.atendidoPorPeriodo),(this.valorEvaluado+1))).toFixed(4));
 
     this.totalServiciomm1 = this.costoServicio*this.numeroCanales;
-    this.totalServiciomm1 = parseFloat((this.totalServiciomm1*this.horasLaborales).toFixed(2));
+    this.totalServiciomm1 = parseFloat((this.totalServiciomm1*this.horasLaborales).toFixed(4));
 
     this.totalEsperasSistemamm1 = this.llegadasPromedio*wmm1Temporal*this.costoInsatisfaccion;
-    this.totalEsperasSistemamm1 = parseFloat((this.totalEsperasSistemamm1*this.horasLaborales).toFixed(2));
+    this.totalEsperasSistemamm1 = parseFloat((this.totalEsperasSistemamm1*this.horasLaborales).toFixed(4));
 
     this.totalEsperaColamm1 = this.llegadasPromedio*wqmm1Temporal*this.costoInsatisfaccion;
-    this.totalEsperaColamm1 = parseFloat((this.totalEsperaColamm1*this.horasLaborales).toFixed(2));
+    this.totalEsperaColamm1 = parseFloat((this.totalEsperaColamm1*this.horasLaborales).toFixed(4));
 
-    this.costoFinalSistemamm1 = parseFloat((this.totalServiciomm1+this.totalEsperasSistemamm1).toFixed(2));
-    this.costoFinalColamm1 = parseFloat((this.totalServiciomm1+this.totalEsperaColamm1).toFixed(2));
+    this.costoFinalSistemamm1 = parseFloat((this.totalServiciomm1+this.totalEsperasSistemamm1).toFixed(4));
+    this.costoFinalColamm1 = parseFloat((this.totalServiciomm1+this.totalEsperaColamm1).toFixed(4));
   }
 
   calcularMMm() {
-    // if (this.mmmForm.invalid) return;
-    this.p0mmm = parseFloat((1/(((1/this.factorial(1))+((this.llegadasPromedio2/this.atendidoPorPeriodo2)^1))+(1/this.factorial(this.numeroCanales2))*((this.llegadasPromedio2/this.atendidoPorPeriodo2)^this.numeroCanales2)*((this.numeroCanales2*this.atendidoPorPeriodo2)/((this.numeroCanales2*this.atendidoPorPeriodo2)-this.llegadasPromedio2)))).toFixed(2));
-    this.lmmm = parseFloat(((((this.llegadasPromedio2*this.atendidoPorPeriodo2)*Math.pow((this.llegadasPromedio2/this.atendidoPorPeriodo2),this.numeroCanales2))/((this.factorial(this.numeroCanales2-1)*(Math.pow((this.numeroCanales2*this.atendidoPorPeriodo2-this.llegadasPromedio2),2))*this.p0mmm+(this.llegadasPromedio2/this.atendidoPorPeriodo2))))).toFixed(2));
-    this.wmmm = parseFloat((this.lmmm/this.llegadasPromedio2).toFixed(2));
-    this.lqmmm = parseFloat((this.lmmm-this.llegadasPromedio2/this.atendidoPorPeriodo2).toFixed(2));
-    this.wqmmm = parseFloat((this.lqmmm/this.llegadasPromedio2).toFixed(2));
-    this.rommm = parseFloat((this.llegadasPromedio2/(this.numeroCanales2* this.llegadasPromedio2)).toFixed(2));
-    this.totalServiciommm = parseFloat((this.costoServicio2*this.numeroCanales2).toFixed(2));
-    this.totalEsperasSistemammm = parseFloat(( this.llegadasPromedio*this.wmmm*this.costoInsatisfaccion2).toFixed(2));
-    this.totalEsperaColammm = parseFloat((this.llegadasPromedio*this.wqmmm*this.costoInsatisfaccion2).toFixed(2));
-    this.costoFinalSistemammm = parseFloat((this.totalServiciommm +this.totalEsperasSistemammm).toFixed(2));
-    this.costoFinalColammm = parseFloat((this.totalServiciommm +this.totalEsperaColammm).toFixed(2));
+    var wmmmTemporal;
+    var wqmmmTemporal;
+    if (this.mmmForm.invalid) return;
+    this.p0mmm = parseFloat((1/(((1/this.factorial(this.numeroCanales2-1))+(Math.pow((this.llegadasPromedio2/this.atendidoPorPeriodo2),this.numeroCanales2-1)))+(1/this.factorial(this.numeroCanales2))*(Math.pow((this.llegadasPromedio2/this.atendidoPorPeriodo2),this.numeroCanales2))*((this.numeroCanales2*this.atendidoPorPeriodo2)/((this.numeroCanales2*this.atendidoPorPeriodo2)-this.llegadasPromedio2)))).toFixed(2));
+    this.lmmm = (((this.llegadasPromedio2*this.atendidoPorPeriodo2)*(Math.pow((this.llegadasPromedio2/this.atendidoPorPeriodo2),this.numeroCanales2))/((this.factorial(this.numeroCanales2-1))*(Math.pow((this.numeroCanales2*this.atendidoPorPeriodo2-this.llegadasPromedio2),2)))))*this.p0mmm+(this.llegadasPromedio2/this.atendidoPorPeriodo2)
+    this.wmmm = (this.lmmm/this.llegadasPromedio2);
+    wmmmTemporal=this.wmmm;
+    this.wmmm = this.wmmm*60;
+    this.lqmmm = parseFloat((this.lmmm-this.llegadasPromedio2/this.atendidoPorPeriodo2).toFixed(4));
+    this.wqmmm = (this.lqmmm/this.llegadasPromedio2);
+    wqmmmTemporal=this.wqmmm;
+    this.wqmmm = this.wqmmm*60;
+
+    this.rommm = parseFloat((this.llegadasPromedio2/(this.numeroCanales2*this.atendidoPorPeriodo2)).toFixed(4));
+    this.totalServiciommm = (this.costoServicio2*this.numeroCanales2)*this.horasLaborales2;
+    this.totalEsperasSistemammm = (this.llegadasPromedio2*wmmmTemporal*this.costoInsatisfaccion2)*this.horasLaborales2;
+    this.totalEsperaColammm = (this.llegadasPromedio2*wqmmmTemporal*this.costoInsatisfaccion2)*this.horasLaborales2;
+    this.costoFinalSistemammm = parseFloat((this.totalServiciommm +this.totalEsperasSistemammm).toFixed(4));
+    this.costoFinalColammm = parseFloat((this.totalServiciommm +this.totalEsperaColammm).toFixed(4));
   }
 
   calcularMD1() {
     if (this.md1Form.invalid) return;
-    this.lqmd1 = parseFloat((Math.pow(this.llegadasPromedio3,2)/(2*this.atendidoPorPeriodo3*(this.atendidoPorPeriodo3-this.llegadasPromedio3))).toFixed(2));
-    this.wqmd1 = parseFloat((this.llegadasPromedio3/(2*this.atendidoPorPeriodo3*(this.atendidoPorPeriodo3-this.llegadasPromedio3))).toFixed(2));
-    this.lmd1 = parseFloat((this.lqmd1 +(this.llegadasPromedio3/this.atendidoPorPeriodo3)).toFixed(2));
-    this.wmmd1 = parseFloat((this.wqmd1+(1/this.atendidoPorPeriodo3)).toFixed(2));
-
+    this.lqmd1 = parseFloat((Math.pow(this.llegadasPromedio3,2)/(2*this.atendidoPorPeriodo3*(this.atendidoPorPeriodo3-this.llegadasPromedio3))).toFixed(4));
+    this.wqmd1 = parseFloat((this.llegadasPromedio3/(2*this.atendidoPorPeriodo3*(this.atendidoPorPeriodo3-this.llegadasPromedio3))).toFixed(4));
+    this.lmd1 = parseFloat((this.lqmd1 +(this.llegadasPromedio3/this.atendidoPorPeriodo3)).toFixed(4));
+    this.wmmd1 = parseFloat((this.wqmd1+(1/this.atendidoPorPeriodo3)).toFixed(4));
   }
-
 
 
   factorial(num:Number){
@@ -157,5 +162,4 @@ export class AppComponent implements OnInit {
   /*MD1*/
   get llegadasPromedio3() { return this.md1Form.get('llegadasPromedio3')?.value }
   get atendidoPorPeriodo3() { return this.md1Form.get('atendidoPorPeriodo3')?.value }
-
 }
