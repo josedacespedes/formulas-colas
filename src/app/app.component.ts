@@ -129,9 +129,9 @@ export class AppComponent implements OnInit {
   calcularMD1() {
     if (this.md1Form.invalid) return;
     this.lqmd1 = parseFloat((Math.pow(this.llegadasPromedio3,2)/(2*this.atendidoPorPeriodo3*(this.atendidoPorPeriodo3-this.llegadasPromedio3))).toFixed(4));
-    this.wqmd1 = parseFloat((this.llegadasPromedio3/(2*this.atendidoPorPeriodo3*(this.atendidoPorPeriodo3-this.llegadasPromedio3))).toFixed(4));
+    this.wqmd1 = parseFloat((this.llegadasPromedio3/(2*this.atendidoPorPeriodo3*(this.atendidoPorPeriodo3-this.llegadasPromedio3))*60).toFixed(4));
     this.lmd1 = parseFloat((this.lqmd1 +(this.llegadasPromedio3/this.atendidoPorPeriodo3)).toFixed(4));
-    this.wmmd1 = parseFloat((this.wqmd1+(1/this.atendidoPorPeriodo3)).toFixed(4));
+    this.wmmd1 = parseFloat((this.wqmd1+(1/this.atendidoPorPeriodo3)*60).toFixed(4));
   }
 
 
